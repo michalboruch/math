@@ -49,3 +49,28 @@ def test_add__wrong_vectors_len():
     with pytest.raises(ValueError) as exc:
         v1 + v2
     assert str(exc.value) == expected_err_msg
+
+
+def test_add():
+    # arrange
+    v1 = Vector([1, 2, 3])
+    v2 = Vector([9, 8, 7])
+    expected_values = [10, 10, 10]
+    # act
+    result = v1 + v2
+    # assert
+    assert isinstance(result, Vector)
+    assert result.values == expected_values
+
+
+def test_subtraction():
+    # arrrange
+    v1 = Vector([1, 2, 7])
+    v2 = Vector([9, 2, 3])
+    expected_values = [-8, 0, 4]
+    # act
+    result = v1 - v2
+    # assert
+    assert isinstance(result, Vector)
+    assert result.values == expected_values
+
