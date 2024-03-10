@@ -4,7 +4,7 @@ Unit tests for vector module
 
 import pytest
 
-from .vector import Vector
+from .vector import Vector, vector_sum
 
 
 def test_init_vector():
@@ -74,3 +74,25 @@ def test_subtraction():
     assert isinstance(result, Vector)
     assert result.values == expected_values
 
+
+def test_vector_sum__empty():
+    # arrange
+    expected_err_msg = "Input list cannot be empty"
+    # act & assert
+    with pytest.raises(ValueError) as exc:
+        vector_sum([])
+    assert str(exc.value) == expected_err_msg
+
+
+def test_vector_sum__wrong_input_type():
+    # arrange
+    v_list = [Vector([1, 2]), [1, 2]]
+    expected_err_msg = "Elements of the input list must have type Vector"
+    # act & assert
+    with pytest.raises(TypeError) as exc:
+        vector_sum(v_list)
+    assert str(exc.value) == expected_err_msg
+
+
+def test_vector_sum__wrong_input_lenght():
+    ...

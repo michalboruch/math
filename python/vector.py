@@ -78,8 +78,17 @@ class Vector:
             [v1_i - v2_i for v1_i, v2_i in zip(self.values, other.values)]
         )
 
-    @staticmethod
-    def sum(vectors: List[TVector]) -> TVector:
-        """Sum vectors elements
-        """
-        ...
+
+def vector_sum(vectors: List[Vector]) -> Vector:
+    """Sum vectors elements
+    """
+    if len(vectors) == 0:
+        raise ValueError("Input list cannot be empty")
+    v_types = [isinstance(i, Vector) for i in vectors]
+    if not all(v_types):
+        raise TypeError("Elements of the input list must have type Vector")
+    v_lenghts = [len(i) == len(vectors[0]) for i in vectors]
+    if not all(v_lenghts):
+        raise ValueError("Vectors must have the same length")
+
+    return [sum(vector[i] for vector in vectors) for i in range(v_len)]
